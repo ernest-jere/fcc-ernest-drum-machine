@@ -1,12 +1,14 @@
  #display {
-  padding: 10px;
+  padding: 21px;
   background-color: #bbff;
+  border-radius: 5px;
+  margin: 4px;
  }
 
 .drum-pad {
   flex-grow: 1;
   margin: 4px;
-  padding: 10px 20px;
+  padding: 21px;
   background-color: #007bff;
   color: white;
   border: none;

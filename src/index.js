@@ -1,7 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-
 const styles = {
   display: "flex",
   justifyContent: "center",
@@ -11,10 +7,7 @@ const styles = {
 }
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
- 
+  
   render() {
     function player(event) {
     const audioParent = document.getElementById(event.target.id);
@@ -73,12 +66,12 @@ class App extends React.Component {
       <div>
         <div id="drum-machine" style={styles}>
           <h1>Drum Machine</h1>
-          <div style={{width:"75%", border: "1px solid black", textAlign: "center", padding: "7px"}}>
+          <div style={{width:"75%", textAlign: "center", padding: "7px"}}>
             <div id="display"> 
               Audio Clip Display 
             </div>
           </div>
-          <div id="pad-area" style={{width:"75%", border: "1px solid black", textAlign: "center", padding: "7px"}}>
+          <div id="pad-area" style={{width:"75%", textAlign: "center"}}>
             <div style={{display: "flex"}}>
                 <div className="drum-pad" id="Heater-1" onClick={player}>Q
                   <audio src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-1.mp3" className="clip" id="Q"></audio>
@@ -119,10 +112,4 @@ class App extends React.Component {
   }
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
+React.render(<App />, document.getElementById('root'))
