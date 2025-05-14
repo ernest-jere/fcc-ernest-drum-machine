@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { SocialIcon } from 'react-social-icons'
 import './Index.css';
 
 const styles = {
@@ -7,113 +8,116 @@ const styles = {
   justifyContent: "center",
   alignItems: "center", 
   flexDirection: "column",
-  userSelect: "none"
+  height: "100vh" 
 }
-
-class App extends React.Component {
-  
-  render() {
-    function player(event) {
-    const audioParent = document.getElementById(event.target.id);
-    const audio = audioParent.querySelector('.clip');
-    if (audio) {
-      audio.play();
-    }
-    const displayField = document.getElementById("display"); 
-    const clipName = event.target.id;
-    if (displayField) {
-      displayField.innerText = clipName;
-    }
+const heading = {
+  textAlign: "center",
+  fontSize: 25,
   }
-    
-    document.addEventListener('keydown', function (event) {
-     switch (event.key) {
-       case 'Q':
-       case 'q': 
-         document.getElementById("Heater-1").click(); 
-         break; 
-       case 'W':
-       case 'w':
-         document.getElementById("Heater-2").click();
-         break;
-       case 'E':
-       case 'e': 
-         document.getElementById("Heater-3").click();
-         break;
-       case 'A':
-       case 'a':
-         document.getElementById("Heater-4").click();
-         break;
-       case 'S':
-       case 's':
-         document.getElementById("Clap").click();
-         break;
-       case 'D':
-       case 'd':
-         document.getElementById("Open-HH").click();
-         break;
-       case 'Z':
-       case 'z':
-         document.getElementById("Kick-n-Hat").click();
-         break;
-       case 'X':
-       case 'x':
-         document.getElementById("Kick").click();
-         break;
-       case 'C':
-       case 'c':
-         document.getElementById("Closed-HH").click();
-         break;
-     } 
+const quote = {
+  textAlign: "center",
+  fontSize: 50,
+  }
+ const text = {
+  boxShadow: "3px 3px 15px grey",
+  padding: 10,
+  width: "50%",
+  height: "auto",
+  borderRadius: 25
+ }
+
+
+class RandomQuoteMachinel extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentIndex: this.getRandomIndex()
+    };
+    this.getRandomIndex = this.getRandomIndex.bind(this);
+    this.handleNextIndex = this.handleNextIndex.bind(this);
+  }
+
+  getRandomIndex = () => {
+    return Math.floor(Math.random() * 10);
+  };
+
+  handleNextIndex = () => {
+    this.setState({
+      currentIndex: this.getRandomIndex()
     });
-    return ( 
+  };
+  render() {
+    const quotations = [
+      {
+        quote: "You know, Hobbes, some days even my lucky rocketship underpants don't help.",
+        author : "―Bill Watterson"
+      },
+      {
+        quote: "Even if we don't have the power to choose where we come from, we can still choose where we go from there.", 
+        author : "—Stephen Chbosky"
+      },
+      {
+        quote: "And now that you don't have to be perfect, you can be good.", 
+        author : "—John Steinbeck"
+      },
+      {
+        quote: "Outside the windows the day was bright: golden sunshine, blue sky, pleasant wind... I wanted to punch the happy day in the face, grab it by the hair, and beat it until it told me what the hell it was so happy about.",
+        author : "―Ilona Andrews"
+      },
+      {
+        quote: "But I am very poorly today & very stupid & I hate everybody & everything. One lives only to make blunders.",
+        author : "―Charles Darwin"
+      },
+      {
+        quote: "I haven't had a very good day. I think I might still be hungover and everyone's dead and my root beer's gone.",
+        author : "―Holly Black"
+      },
+      {
+        quote: "It is impossible to live without failing at something, unless you live so cautiously that you might as well not have lived at all - in which case, you fail by default.",
+        author : "—J.K. Rowling"
+      },
+      {
+        quote: "We are cups, constantly and quietly being filled. The trick is knowing how to tip ourselves over and let the beautiful stuff out.",
+        author : "—Ray Bradbury"
+      },
+      {
+        quote: "Life is never fair, and perhaps it is a good thing for most of us that it is not.",
+        author : "—Oscar Wilde"
+      },
+      {
+        quote: "I've had the sort of day that would make St. Francis of Assisi kick babies.",
+        author : "―Douglas Adams"
+      }
+    ]; 
+    const index = this.state.currentIndex        
+    const twit = quotations[index].quote + " " + quotations[index].author;
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(twit)}`;
+    return (
       <div>
-        <div id="drum-machine" style={styles}>
-          <h1>Drum Machine</h1>
-          <div style={{width:"75%", textAlign: "center", padding: "7px"}}>
-            <div id="display"> 
-              Audio Clip Display 
-            </div>
+        <div id="quote-box" style={styles}>
+        <div style={heading}>
+          <h1>Quote</h1>
+          <p style={quote}>&quot;</p>
+        </div>
+          <div id="text" style={text}>
+            <p>{quotations[index].quote}</p>
           </div>
-          <div id="pad-area" style={{width:"75%", textAlign: "center"}}>
-            <div style={{display: "flex"}}>
-                <div className="drum-pad" id="Heater-1" onClick={player}>Q
-                  <audio src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-1.mp3" className="clip" id="Q"></audio>
-                </div>
-                <div className="drum-pad" id="Heater-2" onClick={player}>W
-                  <audio src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-2.mp3" className="clip" id="W"></audio>
-                </div>
-                <div className="drum-pad" id="Heater-3" onClick={player}>E
-                  <audio src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-3.mp3" className="clip" id="E"></audio>
-                </div>
-              </div> 
-              <div style={{display: "flex"}}>
-                <div className="drum-pad" id="Heater-4" onClick={player}>A
-                 <audio src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-4_1.mp3" className="clip" id="A"></audio>
-                </div>
-                <div className="drum-pad" id="Clap" onClick={player}>S
-                  <audio src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/Heater-6.mp3" className="clip" id="S"></audio>
-                </div>
-                <div className="drum-pad" id="Open-HH" onClick={player}>D
-                 <audio src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/Dsc_Oh.mp3" className="clip" id="D"></audio>
-                </div>
-              </div>
-              <div style={{display: "flex"}}>
-                <div className="drum-pad" id="Kick-n-Hat" onClick={player}>Z
-                  <audio src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/Kick_n_Hat.mp3" className="clip" id="Z"></audio>
-                </div>
-                <div className="drum-pad" id="Kick" onClick={player}>X
-                  <audio src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/RP4_KICK_1.mp3" className="clip" id="X"></audio>
-                </div>
-                <div className="drum-pad" id="Closed-HH" onClick={player}>C
-                  <audio src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/Cev_H2.mp3" className="clip" id="C"></audio>
-                </div>
-              </div>
+          <div id="author">
+            <p>{quotations[index].author}</p>
           </div>
+          <br/>
+          <br/>
+          <button onClick={this.handleNextIndex} id="new-quote">Next Quote!</button>
+          <br/>
+          <br/>
+          <a href={twitterUrl} target="_blank" rel="noopener noreferrer" id="tweet-quote">
+        <SocialIcon url="https://twitter.com" />
+      </a>
         </div>
       </div>
     );
   }
 }
 
-React.render(<App />, document.getElementById('root'))
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
