@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/fcc-ernest-drum-machine/static/css/main.5b8a167f.css",
+    "main.js": "/fcc-ernest-drum-machine/static/js/main.613b136a.js",
+    "index.html": "/fcc-ernest-drum-machine/index.html",
+    "main.5b8a167f.css.map": "/fcc-ernest-drum-machine/static/css/main.5b8a167f.css.map",
+    "main.613b136a.js.map": "/fcc-ernest-drum-machine/static/js/main.613b136a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5b8a167f.css",
+    "static/js/main.613b136a.js"
+  ]
+}
