@@ -1,3 +1,7 @@
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './Index.css';
+
 const styles = {
   display: "flex",
   justifyContent: "center",
